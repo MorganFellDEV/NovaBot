@@ -1,0 +1,8 @@
+services:
+  novabot-core:
+    build: novabot-core
+    hostname: novabot
+    environment:
+      discord_token: ${discord_token}
+      novabot_resources: ${novabot_resources}
+  
