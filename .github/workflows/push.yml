@@ -1,0 +1,17 @@
+name: Build NovaBot
+
+on: push
+
+env:
+  discord_token: ${{ secrets.DISCORD_TOKEN }}
+  novabot_resources: /usr/src/app/novabot-resources
+  novabot_local_resources: /mnt/f/NovaBotData/
+  novabot_prefix: nd!
+
+jobs:
+  runbot:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up -d
