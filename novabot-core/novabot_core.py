@@ -1,9 +1,12 @@
 import os
+import sys
 import discord
 import discord.emoji
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.ext import tasks
+
+from chat_commands import cmd_throw
 
 TOKEN = os.getenv("discord_token")
 resources_location = os.getenv("novabot_resources")
@@ -24,5 +27,12 @@ async def hello(ctx):
 async def on_command_error(ctx, error):
     await ctx.send("Command error, error dumped to logs.")
     raise error
+
+@bot.command(description="Throw someone!")
+async def throw(ctx):
+    try:
+        await ctx.send(cmd_throw.give_throw(ctx), file=discord.File(cmd_throw.random_throw_image()))
+    except:
+        print(sys.exc_info())
 
 bot.run(TOKEN)
