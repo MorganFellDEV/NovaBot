@@ -17,6 +17,9 @@ jobs:
         run: |
           touch .env
           echo discord_token=${{ secrets.DISCORD_TOKEN }} >> .env
+          echo nova_phone_number=${{ secrets.NOVA_PHONE_NUMBER }} >> .env
+          echo twilio_token=${{ secrets.TWILIO_TOKEN }} >> .env
+          echo twilio_sid=${{ secrets.TWILIO_SID }} >> .env
           echo novabot_resources=/usr/src/app/novabot-resources >> .env
           echo novabot_local_resources=/NovaBot >> .env
           echo novabot_prefix=nd! >> .env

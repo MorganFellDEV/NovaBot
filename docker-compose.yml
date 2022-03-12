@@ -10,4 +10,7 @@ services:
       discord_token: ${discord_token}
       novabot_resources: ${novabot_resources}
       novabot_prefix: ${novabot_prefix}
+      nova_phone_number: ${nova_phone_number}
+      twilio_token: ${twilio_token}
+      twilio_sid: ${twilio_sid}
   
