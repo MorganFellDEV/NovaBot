@@ -5,7 +5,7 @@ on: push
 env:
   discord_token: ${{ secrets.DISCORD_TOKEN }}
   novabot_resources: /usr/src/app/novabot-resources
-  novabot_local_resources: /mnt/f/NovaBotData/
+  novabot_local_resources: /NovaBot
   novabot_prefix: nd!
 
 jobs:
@@ -14,4 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the stack
-        run: sudo docker-compose up -d --build
+        run: | 
+        touch .env
+        echo discord_token=${{ secrets.DISCORD_TOKEN }} >> .env
+        echo novabot_resources=/usr/src/app/novabot-resources >> .env
+        echo novabot_local_resources=/NovaBot >> .env
+        echo novabot_prefix=nd! >> .env
+        sudo docker-compose up -d --build
