@@ -72,7 +72,7 @@ class BotCommands(commands.Cog):
     async def textnova(self,ctx):
         try:
             user_message_string = ctx.message.content
-            user_message_string = user_message_string.replace(str(novabot_prefix+"annoynova "),"")
+            user_message_string = user_message_string.replace(str(novabot_prefix+"textnova "),"")
             print (user_message_string)
             if (len(user_message_string) < 100):
                 twilioclient.api.account.messages.create(
