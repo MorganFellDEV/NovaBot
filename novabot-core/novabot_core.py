@@ -6,8 +6,6 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.ext import tasks
 
-from chat_commands import cmd_throw
-
 TOKEN = os.getenv("discord_token")
 resources_location = os.getenv("novabot_resources")
 
@@ -28,11 +26,12 @@ async def on_command_error(ctx, error):
     await ctx.send("Command error, error dumped to logs.")
     raise error
 
-@bot.command(description="Throw someone!")
-async def throw(ctx):
-    try:
-        await ctx.send(cmd_throw.give_throw(ctx), file=discord.File(cmd_throw.random_throw_image()))
-    except:
-        print(sys.exc_info())
+@bot.command()
+@commands.is_owner()
+async def reload(ctx, extension):
+    bot.reload_extension(extension)
+    embed = discord.Embed(title='Reload', description=f'{extension} successfully reloaded', color=0xff00c8)
+    await ctx.send(embed=embed)
 
+bot.load_extension("chat_commands.cmd_cog")
 bot.run(TOKEN)
