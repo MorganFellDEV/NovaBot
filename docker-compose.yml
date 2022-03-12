@@ -1,3 +1,5 @@
+#Put your environment variables into .env!
+
 services:
   novabot-core:
     build: novabot-core
