@@ -14,7 +14,7 @@ def random_action_image(action):
 
 
 def print_action(ctx,action):
-    throw_string = ""
+    action_string = ""
 
     for incrementer, value in enumerate(ctx.message.mentions):
         print("length list " + str(len(ctx.message.mentions)))
@@ -22,19 +22,19 @@ def print_action(ctx,action):
             print("more than two people")
             if incrementer == 0:
                 # first person
-                throw_string += str(ctx.message.mentions[incrementer].name)
+                action_string += str(ctx.message.mentions[incrementer].name)
                 pass
             elif incrementer != len(ctx.message.mentions) - 1:
-                throw_string += ", " + str(ctx.message.mentions[incrementer].name)
+                action_string += ", " + str(ctx.message.mentions[incrementer].name)
             else:
-                throw_string += " and " + str(ctx.message.mentions[incrementer].name)
+                action_string += " and " + str(ctx.message.mentions[incrementer].name)
 
         else:
             if incrementer == 0:
                 # first person
-                throw_string += str(ctx.message.mentions[incrementer].name)
+                action_string += str(ctx.message.mentions[incrementer].name)
                 pass
             elif incrementer != len(ctx.message.mentions):
-                throw_string += " and " + str(ctx.message.mentions[incrementer].name)
+                action_string += " and " + str(ctx.message.mentions[incrementer].name)
 
-    return ctx.message.author.name + " " + action +"s " + throw_string + "!"
+    return ctx.message.author.name + " " + action +"s " + action_string + "!"
