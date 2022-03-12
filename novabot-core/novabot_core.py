@@ -8,6 +8,8 @@ from discord.ext import tasks
 import requests
 import json
 
+
+
 TOKEN = os.getenv("discord_token")
 resources_location = os.getenv("novabot_resources")
 

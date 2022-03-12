@@ -1,11 +1,16 @@
 import discord
 import discord.emoji
 import requests
+import sys
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.ext import tasks
-
 from chat_commands import cmd_actions
+from chat_commands import get_emote
+
+from chat_commands.FileStore import FileStore
+
+fileStore = FileStore()
 
 class BotCommands(commands.Cog):
     def __init__(self, bot):
@@ -46,6 +51,12 @@ class BotCommands(commands.Cog):
                 file.write(requester.content)
             await ctx.send(file=discord.File("farts.gif"))
 
+    @commands.command(description="Posts the image of the emote sent to it.")
+    async def jumbo(self,ctx, emoji: discord.PartialEmoji):
+        try:
+            await ctx.send(file=get_emote.get_emote_image(ctx, emoji, fileStore))
+        except:
+            print(sys.exc_info())
 
 def setup(bot):
     bot.add_cog(BotCommands(bot))
