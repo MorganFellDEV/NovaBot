@@ -12,6 +12,6 @@ jobs:
   runbot:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build the stack
         run: docker-compose up -d
