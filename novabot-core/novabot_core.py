@@ -20,4 +20,9 @@ async def on_ready():
 async def hello(ctx):
     await ctx.send("Hello, world!")
 
+@bot.event
+async def on_command_error(ctx, error):
+    await ctx.send("Command error, error dumped to logs.")
+    raise error
+
 bot.run(TOKEN)
