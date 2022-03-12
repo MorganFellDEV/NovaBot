@@ -27,7 +27,9 @@ async def hello(ctx):
 
 @bot.event
 async def on_command_error(ctx, error):
-    await ctx.send("Command error, error dumped to logs.")
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send("This command is on cooldown, you can use it in "+ str(round(error.retry_after, 2)) + " seconds.")
+    await ctx.send("*Command error, error dumped to logs.*")
     raise error
 
 @bot.command()
