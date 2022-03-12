@@ -2,6 +2,8 @@ services:
   novabot-core:
     build: novabot-core
     hostname: novabot
+    volumes:
+      - ${novabot_local_resources}:${novabot_resources}
     environment:
       discord_token: ${discord_token}
       novabot_resources: ${novabot_resources}
