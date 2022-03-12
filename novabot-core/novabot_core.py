@@ -5,6 +5,8 @@ import discord.emoji
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.ext import tasks
+import requests
+import json
 
 TOKEN = os.getenv("discord_token")
 resources_location = os.getenv("novabot_resources")
@@ -32,6 +34,11 @@ async def reload(ctx, extension):
     bot.reload_extension(extension)
     embed = discord.Embed(title='Reload', description=f'{extension} successfully reloaded', color=0xff00c8)
     await ctx.send(embed=embed)
+
+@bot.command()
+async def version(ctx):
+    jsondata= json.loads(requests.get("https://api.github.com/repos/MorganFellDEV/NovaBot/commits/main").content)
+    await ctx.send("NovaBot is currently version *"+ jsondata["sha"][0:7] + "*")
 
 bot.load_extension("chat_commands.cmd_cog")
 bot.run(TOKEN)
