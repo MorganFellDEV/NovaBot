@@ -20,6 +20,14 @@ class BotCommands(commands.Cog):
             print(sys.exc_info())
 
     @commands.command()
+    async def tickle(self,ctx):
+        try:
+            await ctx.send(cmd_actions.print_action(ctx,"tickle"), file=discord.File(cmd_actions.random_action_image("tickle")))
+        except:
+            print(sys.exc_info())
+
+
+    @commands.command()
     async def patpfp(self,ctx):
         if (ctx.message.mentions):
             user = ctx.message.mentions[0]
