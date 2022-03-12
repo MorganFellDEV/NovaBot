@@ -4,7 +4,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.ext import tasks
 
-from chat_commands import cmd_throw
+from chat_commands import cmd_actions
 
 class BotCommands(commands.Cog):
     def __init__(self, bot):
@@ -14,7 +14,7 @@ class BotCommands(commands.Cog):
     @commands.command(description="Throw someone!")
     async def throw(self,ctx):
         try:
-            await ctx.send(cmd_throw.give_throw(ctx), file=discord.File(cmd_throw.random_throw_image()))
+            await ctx.send(cmd_actions.print_action(ctx,"throw"), file=discord.File(cmd_actions.random_action_image("throw")))
         except:
             print(sys.exc_info())
 

@@ -6,14 +6,14 @@ import os
 resources_location = os.getenv("novabot_resources")
 
 
-def random_throw_image():
-    onlyfiles = [f for f in listdir(str(resources_location) + "/throw/") if
-                 isfile(join(str(resources_location) + "/throw/", f))]
-    file = str((str(resources_location) + "/throw/" + random.choice(onlyfiles)))
+def random_action_image(action):
+    onlyfiles = [f for f in listdir(str(resources_location) + "/"+action+"/") if
+                 isfile(join(str(resources_location) + "/"+action+"/", f))]
+    file = str((str(resources_location) + "/"+action+"/" + random.choice(onlyfiles)))
     return file
 
 
-def give_throw(ctx):
+def print_action(ctx,action):
     throw_string = ""
 
     for incrementer, value in enumerate(ctx.message.mentions):
@@ -37,4 +37,4 @@ def give_throw(ctx):
             elif incrementer != len(ctx.message.mentions):
                 throw_string += " and " + str(ctx.message.mentions[incrementer].name)
 
-    return ctx.message.author.name + " throws " + throw_string + "!"
+    return ctx.message.author.name + " " + action +"s " + throw_string + "!"
