@@ -7,4 +7,5 @@ services:
     environment:
       discord_token: ${discord_token}
       novabot_resources: ${novabot_resources}
+      novabot_prefix: ${novabot_prefix}
   

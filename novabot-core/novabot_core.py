@@ -12,7 +12,7 @@ TOKEN = os.getenv("discord_token")
 resources_location = os.getenv("novabot_resources")
 
 # 'nd!' is the DEV prefix for NovaBot
-bot = Bot(command_prefix="nd!")
+bot = Bot(command_prefix=str(os.getenv("novabot_prefix")))
 
 @bot.event
 async def on_ready():
