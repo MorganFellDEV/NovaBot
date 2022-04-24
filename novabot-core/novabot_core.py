@@ -21,9 +21,6 @@ async def on_ready():
     print(f"{bot.user.name} has connected to Discord!")
     print("Resources Location: " + str(resources_location))
 
-@bot.command()
-async def hello(ctx):
-    await ctx.send("Hello, world!")
 
 @bot.event
 async def on_command_error(ctx, error):
