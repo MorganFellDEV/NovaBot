@@ -50,6 +50,7 @@ class BotCommands(commands.Cog):
             requester = requests.get(request_string)
             with open('farts.gif', 'wb') as file:
                 file.write(requester.content)
+            await ctx.send(ctx.message.author.name + " pats " + user.name + "!")
             await ctx.send(file=discord.File("farts.gif"))
         else:
             user = ctx.message.author
