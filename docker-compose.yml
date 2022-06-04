@@ -13,4 +13,7 @@ services:
       nova_phone_number: ${nova_phone_number}
       twilio_token: ${twilio_token}
       twilio_sid: ${twilio_sid}
+      azure_connection_string: ${azure_connection_string}
+      cdn_location: ${cdn_location}
+      blob_container: ${blob_container}
   

@@ -1,3 +1,4 @@
 requests
 discord
 twilio
+azure.storage.blob
