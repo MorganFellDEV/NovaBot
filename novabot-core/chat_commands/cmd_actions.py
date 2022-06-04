@@ -2,15 +2,21 @@ from os import listdir
 from os.path import isfile, join
 import random
 import os
+from azure.storage.blob import *
 
 resources_location = os.getenv("novabot_resources")
-
+connection_string = os.getenv("azure_connection_string")
+cdn_location = os.getenv("cdn_location")
+blob_container = os.getenv("blob_container")
 
 def random_action_image(action):
-    onlyfiles = [f for f in listdir(str(resources_location) + "/"+action+"/") if
-                 isfile(join(str(resources_location) + "/"+action+"/", f))]
-    file = str((str(resources_location) + "/"+action+"/" + random.choice(onlyfiles)))
-    return file
+    blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+    container_client = blob_service_client.get_container_client(blob_container)
+    blob_list = list(container_client.list_blobs(name_starts_with=action+"/"))
+    blob = random.choice(blob_list)
+
+    url = cdn_location+blob.name
+    return url
 
 
 def print_action(ctx,action):

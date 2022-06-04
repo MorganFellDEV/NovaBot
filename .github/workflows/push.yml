@@ -23,4 +23,7 @@ jobs:
           echo novabot_resources=/usr/src/app/novabot-resources >> .env
           echo novabot_local_resources=/NovaBot >> .env
           echo novabot_prefix=nd! >> .env
+          echo azure_connection_string=${{ secrets.AZURE_CONNECTION_STRING }} >> .env
+          echo cdn_location=${{ secrets.CDN_LOCATION }} >> .env
+          echo blob_container=${{ secrets.BLOB_CONTAINER }} >> .env
           sudo docker-compose up -d --build
