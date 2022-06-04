@@ -26,17 +26,26 @@ class BotCommands(commands.Cog):
         self.bot = bot
         self._last_member = None
     
+    def createembed(self,ctx,action):
+            embedVar = discord.Embed(title=cmd_actions.print_action(ctx,action), color=0xf1d1dc)
+            embedVar.set_image(url="attachment://image.png")
+            return embedVar
+
     @commands.command(description="Throw someone!")
     async def throw(self,ctx):
         try:
-            await ctx.send(cmd_actions.print_action(ctx,"throw"), file=discord.File(cmd_actions.random_action_image("throw")))
+            image_file = discord.File(cmd_actions.random_action_image("throw"), filename="image.png")
+            actionembed = self.createembed(ctx,"throw")
+            await ctx.send(file=image_file,embed=actionembed)
         except:
             print(sys.exc_info())
 
     @commands.command()
     async def tickle(self,ctx):
         try:
-            await ctx.send(cmd_actions.print_action(ctx,"tickle"), file=discord.File(cmd_actions.random_action_image("tickle")))
+            image_file = discord.File(cmd_actions.random_action_image("tickle"), filename="image.png")
+            actionembed = self.createembed(ctx,"tickle")
+            await ctx.send(file=image_file,embed=actionembed)
         except:
             print(sys.exc_info())
 
